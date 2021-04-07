@@ -1,0 +1,51 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel='stylesheet', href='../public/css/bootstrap.profile.design.css')
+
+block content
+    main.centered
+        .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
+            .row.no-gutters
+                .col-md-12
+                    .card-body
+                        a.greenText(href='https://whatsonchain.com/tx/'+`${tx.transactionId}`)
+                            h5.card-title #{tx.transactionId}
+                        ul.list-unstyled.mt-3.mb-4
+                            li Note: #{tx.note}
+                            li Type: #{tx.type}  
+                            li Time: #{tx.time}
+                            li Fees: #{tx.satoshiFees}  
+                            li Amount: #{tx.satoshiAmount}
+                            li Exchange Rate: #{tx.fiatExchangeRate}  
+                            li Currency Code: #{tx.fiatCurrencyCode}   
+        each participant in tx.participants
+            .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
+                .row.no-gutters
+                    .col-md-2
+                        img.card-img(src=(participant.profilePictureUrl!=null?participant.profilePictureUrl:'https://res.cloudinary.com/hn8pdtayf/image/upload/v1574424259/yujsq64bxfbrbobexivo.jpg'))
+                    .col-md-10
+                        .card-body
+                            ul.list-unstyled.mt-3.mb-4
+                                li Type: #{participant.type}
+                                li Alias: #{participant.alias}
+                                li Display Name: #{participant.displayName}
+        each attachment in tx.attachments
+            .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
+                .row.no-gutters
+                    .col-md-12
+                        .card-body
+                            ul.list-unstyled.mt-3.mb-4
+                                if attachment.format=='json'
+                                    li Value: 
+                                        code 
+                                            each val, key in attachment.value 
+                                                li #{key}: #{val} 
+                                
+                                else
+                                    li attachment.value 
+                                    li att 
+                                            
+                                li Format: #{attachment.format}
+        button
+            a(href="/auth/profile") Back to profile

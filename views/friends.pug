@@ -1,0 +1,23 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel='stylesheet', href='../public/css/bootstrap.profile.design.css')
+
+block content
+    main.centered
+        H1 Friends
+        each friend in friends
+            .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
+                .row.no-gutters
+                    .col-md-2
+                        img.card-img(src=(friend.avatarUrl!=null?friend.avatarUrl:'https://res.cloudinary.com/hn8pdtayf/image/upload/v1574424259/yujsq64bxfbrbobexivo.jpg'))
+                    .col-md-10
+                        .card-body
+                            ul.list-unstyled.mt-3.mb-4
+                                li ID: #{friend.id}
+                                li Handle: #{friend.handle}
+                                li Display Name: #{friend.displayName}
+                                li Local Curreny Code: #{friend.localCurrencyCode}
+                                li Handle: #{friend.handle}
+        button
+            a(href="/auth/profile") Back to profile

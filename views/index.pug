@@ -1,0 +1,16 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/user.css")
+    link(rel="stylesheet", href="/css/forms.css")
+    
+block content
+    p
+    .card.center.selector.noshadow(style='max-width: 750px;') 
+        h1.center Login with:
+    p
+    .card.center.selector.noshadow(style='max-width: 750px;')
+        .row.no-gutters
+            a(href=redirectUrl)
+                img.productImage(src='images/handcash_connect.png', alt="HC Logo")
+            

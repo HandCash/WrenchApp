@@ -1,0 +1,89 @@
+ /* Container needed to position the button. Adjust the width as needed */
+ .container {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Make the image responsive */
+  .container img {
+    text-align: left;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-pills .pill-1 .nav-link:not(.active) {
+    color: #007bff ;
+    background-color: white;
+  }
+
+  .nav-pills .pill-1 .nav-link {
+    background-color: #007bff ;
+    color: white;
+  }
+
+  .selector.noshadow {
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+
+  .row.no-gutters {
+    border-radius: 5px;
+    box-shadow: 0 0 0pt 1.5pt black;
+  }
+
+  .row.no-gutters .tx {
+    border-radius: 5px;
+    box-shadow: 0 0 0pt 1.5pt black;
+  }
+
+  .navbar {
+    text-align: center;
+  }
+
+
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .card-image {
+    object-fit: cover;
+  }
+
+  .small-image {
+    max-width: 155px !important;
+  }
+
+  .center-card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .container .btn {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(32, 158, 91, 0.8);;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .container .btn:hover {
+    background-color: rgb(49, 185, 113, 0.95);;
+  } 

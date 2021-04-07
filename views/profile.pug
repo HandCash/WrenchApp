@@ -1,0 +1,54 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel='stylesheet', href='../public/css/bootstrap.profile.design.css')
+
+block content
+    main.centered
+        .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
+            .row.no-gutters
+                .col-md-4
+                    img.card-img(src=(publicProfile.avatarUrl!=null?publicProfile.avatarUrl:'https://res.cloudinary.com/hn8pdtayf/image/upload/v1574424259/yujsq64bxfbrbobexivo.jpg'), alt="profile picture")
+                .col-md-8
+                    .card-body
+                        h5.card-title $#{publicProfile.handle}
+                        ul.list-unstyled.mt-3.mb-4
+                            li #{publicProfile.displayName}
+                            li Spendable Balance: #{spendableBalance.spendableFiatBalance} #{publicProfile.localCurrencyCode}                        
+                        br
+                        h5.card-title Private Information
+                        ul.list-unstyled.mt-3.mb-4
+                            li #{privateProfile.email}
+                            li #{privateProfile.phoneNumber}
+                        br
+                        h5.card-title Permissions
+                        ul.list-unstyled.mt-3.mb-4
+                            li #{permissions}
+                        br
+                        button
+                            a(href="/auth/friends") Friends
+        button
+            a(href="/auth/test-send") Test Transaction
+        p
+        button
+            a(href="/auth/test-multi-send") Test MultiSend Transaction
+        p
+        button
+            a(href="/auth/test-data") Test Data Transaction
+        p
+        br
+        .search-container
+            form(action='/auth/get-transaction', method='post')
+                input(type='text', placeholder='txid', name='transactionId')
+                p
+                button
+                    a(type="submit") View Transaction        
+        p
+        br
+        .search-container
+            form(action='/auth/encrypt', method='post')
+                input(type='text', placeholder='text', name='encryptText')
+                p
+                button
+                    a(type="submit") Encrypt
+        p

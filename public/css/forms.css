@@ -1,0 +1,50 @@
+.product-form{
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+}
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid darkred;
+  font: inherit;
+  border-radius: 2px;
+}
+
+button {
+    font: inherit;
+    border: 1px solid darkred;
+    background: white;
+    border-radius: 3px;
+    color: darkred;
+    cursor: pointer;
+}
+button:hover,
+button:active {
+    background-color: darkred;
+    color:white;
+}
+button a {
+  color: darkred;
+  text-decoration: none; 
+}
+
+button:hover a {
+  color: white;
+  text-decoration: none; 
+}
+
+.important{
+  color: red;
+  font-weight:bold;
+}
