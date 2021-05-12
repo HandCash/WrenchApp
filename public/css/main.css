@@ -450,13 +450,41 @@ form {
 	box-shadow: 0px 0px 0px hsla(0, 0%, 0%, .15);
 }
 
-.button {
-  background-color: #38CB7C; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
+button {
+  background-color: #35469C !important; /* Green */
+  border: none !important;
+  color: white !important;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  width: 20%
+}
+
+.feature {
+  background-color: #38CB7C !important;
+  width: 100%; /* Green */
+}
+
+a  {
+  color: white !important;
+}
+
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ebebeb;
+  color: rgb(34, 34, 34);
+}
+
+hr {
+  border: none;
+  height: 2px;
+  /* Set the hr color */
+  color: #38CB7C; /* old IE */
+  background-color: #38CB7C; /* Modern Browsers */
+}
+
+main {
+  max-width: 600px;
 }
