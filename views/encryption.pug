@@ -12,9 +12,13 @@ block content
                         h5.card-title Encryption
                         ul.list-unstyled.mt-3.mb-4
                             li ecPrivateKey: #{encryptionDetails.ecPrivateKey} 
+                            p
                             li ecPublicKey: #{encryptionDetails.ecPublicKey}  
+                            p
                             li plainText: #{encryptionDetails.plainText}
+                            p
                             li encryptedBuffer: #{encryptionDetails.encryptedBuffer}  
+                            p
                             li decryptedBuffer: #{encryptionDetails.decryptedBuffer}  
         button
-            a(href="/auth/profile") Back to profile
+            a(href="/auth/dashboard") Back to dashboard

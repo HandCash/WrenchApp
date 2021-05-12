@@ -26,13 +26,13 @@ module.exports.getAuthenticate = async (req, res, next) => {
   // get user profile, and save alias to the user 
   const account = await handCashConnect.getAccountFromAuthToken(authToken);
   const { publicProfile } = await account.profile.getCurrentProfile()
-  const connectId = publicProfile.id
+  const handcashId = publicProfile.id
 
   // check if the user exists, if not create a new one
-  let user = await User.findOne({connectId: connectId})
+  let user = await User.findOne({handcashId: handcashId})
   if(!user){
     user = new User();
-    user.connectId = connectId
+    user.handcashId = handcashId
   }
 
   // update authToken
@@ -43,11 +43,11 @@ module.exports.getAuthenticate = async (req, res, next) => {
 
   // generating a jwt
   req.session.accessToken = user.generateAuthToken();
-  res.redirect('/auth/profile'); 
+  res.redirect('/auth/dashboard'); 
 };
 
 // returns user's information
-module.exports.getCurrentUser = async (req, res) => {
+module.exports.getProfile = async (req, res) => {
 
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
@@ -66,6 +66,27 @@ module.exports.getCurrentUser = async (req, res) => {
     path: '/profile'
   }) 
 }
+
+// returns user's information
+module.exports.getDashboard = async (req, res) => {
+
+  // fetch the authenticated user and their profile
+  const user = await User.findById(req.user._id);
+  const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
+  const { publicProfile } = await account.profile.getCurrentProfile();
+  const spendableBalance = await account.wallet.getSpendableBalance()
+  const permissions = await account.profile.getPermissions()
+  // print it out
+
+  // display public profile
+  res.render('dashboard', {
+    publicProfile: publicProfile,
+    spendableBalance: spendableBalance,
+    permissions: permissions,
+    path: '/dashboard'
+  }) 
+}
+
 
 // returns user's information
 module.exports.getFriends = async (req, res) => {

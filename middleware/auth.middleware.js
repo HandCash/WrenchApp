@@ -10,9 +10,7 @@ module.exports = function(req, res, next) {
   if (!token) 
     return res
       .status(401)
-      .send(
-        "Access denied. No token provided."
-      );
+      .redirect("/");
 
   try {
     //if can verify the token, set req.user and pass to next middleware

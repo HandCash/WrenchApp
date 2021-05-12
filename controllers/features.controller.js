@@ -5,6 +5,28 @@ const {HandCashConnect} = require('@handcash/handcash-connect');
 require('dotenv').config()
 const handCashConnect = new HandCashConnect(process.env.appId);
 
+const parseHandleArray = (handlesString) => handlesString.replace(/ /g, "").replace(/\$/g, "").split(",")
+
+const parseHandle = (handleString) => handleString.replace(/ /g, "").replace(/\$/g, "")
+
+function ConvertStringToHex(str) {
+  var arr = [];
+  for (var i = 0; i < str.length; i++) {
+         arr[i] = (str.charCodeAt(i).toString(16)).slice(-4);
+  }
+  return arr.join("");
+}
+
+function ConvertHexToString(str1) {
+	var hex  = str1.toString();
+	var str = '';
+	for (var n = 0; n < hex.length; n += 2) {
+		str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+	}
+	return str;
+}
+
+
 // sends a transaction on behalf of the user
 module.exports.sendTransaction = async (req, res, next) => {
 
@@ -13,16 +35,14 @@ module.exports.sendTransaction = async (req, res, next) => {
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
 
   // define parameters 
-  const handle = "eyeone"
-  const amount = 0.0025
-  const appAction = "like"
-  const note = 'Hold my beer!🍺'
-  const currencyCode = 'USD'
+  const handle = parseHandle(req.body.handle)
+  const amount = parseInt(req.body.amount)
+  const note = req.body.note
+  const currencyCode = 'DUR'
 
   // construct the payment
   const paymentParameters = {
     description: note,
-    appAction: appAction,
     payments:
       [
         {
@@ -38,42 +58,34 @@ module.exports.sendTransaction = async (req, res, next) => {
   console.log(payment)
 
   // display public profile with the recent transaction
-  res.render('transaction', {
-    tx: payment,
-    path: '/transaction'
-  })
+  res.redirect("/auth/get-transaction?txid=" + payment.transactionId)
 }
 
 // sends a transaction on behalf of the user
 module.exports.sendMultisendTransaction = async (req, res, next) => {
-
+  console.log("here")
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
 
+  // define parameters 
+  const handles = parseHandleArray(req.body.handles)
+  const amount = parseInt(req.body.amount)
+  const note = req.body.note
+  const currencyCode = 'DUR'
+
+  const payments = handles.map(handle => {return {
+    destination: handle,
+    currencyCode: currencyCode,
+    sendAmount: amount
+  }})
+
+  console.log(payments)
   // configure the payment
-  const amount = 0.005;
   const paymentParameters = {
-    description: 'Test Multi',
+    description: note,
     appAction: "test-multi-send",
-    payments:
-      [
-        {
-          destination: "rjseibane",
-          currencyCode: "USD",
-          sendAmount: amount
-        },
-        {
-          destination: "cryptokang@moneybutton.com",
-          currencyCode: "CAD",
-          sendAmount: amount
-        },
-        {
-          destination: "1Ew7thSBdK1UQMPdkSPh3A8VR5tmSEPPma",
-          currencyCode: "USD",
-          sendAmount: amount
-        },
-      ],
+    payments: payments
   };
 
   // make the payment
@@ -81,10 +93,7 @@ module.exports.sendMultisendTransaction = async (req, res, next) => {
   console.log(payment)
 
   // display public profile with the recent transaction
-  res.render('transaction', {
-    tx: payment,
-    path: '/transaction'
-  })
+  res.redirect("/auth/get-transaction?txid=" + payment.transactionId)
 }
 
 // sends a transaction on behalf of the user
@@ -93,18 +102,19 @@ module.exports.sendDataTransaction = async (req, res, next) => {
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
+  const { publicProfile } = await account.profile.getCurrentProfile()
 
   // define parameters 
-  const handle = "rjseibane"
-  const amount = 0.005
-  const note = 'Comment'
-  const currencyCode = 'USD'
-  const appAction = "test-data"
+  const handle = publicProfile.handle
+  const amount = 500
+  const note = 'Posting data to the chain'
+  const data = ConvertStringToHex(req.body.text)
+  console.log(data)
+  const currencyCode = 'SAT'
 
   // construct the payment
   const paymentParameters = {
     description: note,
-    appAction: appAction,
     payments:
       [
         {
@@ -115,27 +125,14 @@ module.exports.sendDataTransaction = async (req, res, next) => {
       ],
 
     //attachment: { format: 'base64', value: 'ABEiM0RVZneImQCqu8zd7v8=' },
-    //attachment: { format: 'hex', value: '0011223344556677889900AABBCCDDEEFF' },
-
-    attachment: {
-      format: 'json', 
-      value:
-      {
-        "comment": "wow really cool!",
-        "referencedPostId": "5da9c43030d9a700172c29e1"
-      }
-    },
+    attachment: { format: 'hex', value: data },
   };
 
   // make the payment
-  const payment = await account.wallet.pay(paymentParameters)
-  console.log(payment)
+  const payment = await account.wallet.pay(paymentParameters).catch(err => console.log(err))
 
   // display public profile with the recent transaction
-  res.render('transaction', {
-    tx: payment,
-    path: '/transaction'
-  })
+  res.redirect("/auth/get-transaction?txid=" + payment.transactionId)
 }
 
 // sends a transaction on behalf of the user
@@ -144,8 +141,16 @@ module.exports.getTransaction = async (req, res, next) => {
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
-  const paymentResult = await account.wallet.getPayment(req.body.transactionId)
-
+  const paymentResult = await account.wallet.getPayment(req.query.txid)
+ 
+  paymentResult.attachments = paymentResult.attachments.map(attachment => {
+    if(attachment.format == 'hex') 
+      attachment.hexValue = ConvertHexToString(attachment.value)
+    return attachment
+  })
+  
+  console.log(paymentResult)
+  
   // display public profile with the recent transaction
   res.render('transaction', {
     tx: paymentResult,

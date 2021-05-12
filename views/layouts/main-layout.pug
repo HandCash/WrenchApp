@@ -18,10 +18,19 @@ html(lang="en")
         block styles 
 
     body
-        header.main-header
-            a.navbar-brand
-                .logo
-                    img(src='https://res.cloudinary.com/habwvnurd/image/upload/v1600997133/jttkmwq8esbxksntqrmw.png', alt="HC Logo")
-            h5 Wrench App
-               
+        header
+            .topnav.blueBg
+                ul.menu
+                    li
+                        a.navbar-brand(href="/auth/dashboard")
+                            .logo
+                                img(src='https://res.cloudinary.com/habwvnurd/image/upload/v1600997133/jttkmwq8esbxksntqrmw.png', alt="Wrench Logo")
+                    li
+                        h5 Wrench App
+                    li.profilePictureLogo
+                        if(publicProfile)
+                            a.navbar-brand(href="profile")
+                                .logo
+                                    img(src=publicProfile.avatarUrl!=null?publicProfile.avatarUrl:'https://res.cloudinary.com/hn8pdtayf/image/upload/v1574424259/yujsq64bxfbrbobexivo.jpg', alt="Wrench Logo")
+                
         block content

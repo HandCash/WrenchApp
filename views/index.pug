@@ -3,14 +3,16 @@ extends ./layouts/main-layout.pug
 block styles
     link(rel="stylesheet", href="/css/user.css")
     link(rel="stylesheet", href="/css/forms.css")
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='css/styles.css')
     
 block content
     p
-    .card.center.selector.noshadow(style='max-width: 750px;') 
-        h1.center Login with:
-    p
-    .card.center.selector.noshadow(style='max-width: 750px;')
-        .row.no-gutters
-            a(href=redirectUrl)
-                img.productImage(src='images/handcash_connect.png', alt="HC Logo")
+        center 
+            h5 Welcome to Wrench App, this is a demo app for HandCash Connect            
+            br
+        center
+            #connectButton(url=redirectUrl) Connect with HandCash
+            script(type='text/javascript', src='js/connect_button.js')
+
             

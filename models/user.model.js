@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 //simple schema
 const UserSchema = new mongoose.Schema({
-  connectId: {
+  handcashId: {
     type: String,
   },
   connectAuthToken: {

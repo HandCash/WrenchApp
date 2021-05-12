@@ -28,27 +28,4 @@ block content
                         button
                             a(href="/auth/friends") Friends
         button
-            a(href="/auth/test-send") Test Transaction
-        p
-        button
-            a(href="/auth/test-multi-send") Test MultiSend Transaction
-        p
-        button
-            a(href="/auth/test-data") Test Data Transaction
-        p
-        br
-        .search-container
-            form(action='/auth/get-transaction', method='post')
-                input(type='text', placeholder='txid', name='transactionId')
-                p
-                button
-                    a(type="submit") View Transaction        
-        p
-        br
-        .search-container
-            form(action='/auth/encrypt', method='post')
-                input(type='text', placeholder='text', name='encryptText')
-                p
-                button
-                    a(type="submit") Encrypt
-        p
+            a(href="/auth/dashboard") Back to dashboard

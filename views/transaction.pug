@@ -41,6 +41,14 @@ block content
                                         code 
                                             each val, key in attachment.value 
                                                 li #{key}: #{val} 
+
+                                else if attachment.format=='hex'
+                                    li Value: 
+                                    li #{attachment.hexValue}
+                                    br
+                                    li Raw Value: 
+                                    li #{attachment.value}
+                                    br
                                 
                                 else
                                     li attachment.value 
@@ -48,4 +56,4 @@ block content
                                             
                                 li Format: #{attachment.format}
         button
-            a(href="/auth/profile") Back to profile
+            a(href="/auth/dashboard") Back to dashboard

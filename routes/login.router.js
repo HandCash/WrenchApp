@@ -10,7 +10,10 @@ router.get('/', controller.getLoginLink)
 router.get('/authenticate', controller.getAuthenticate)
 
 // display user information
-router.get('/auth/profile', auth, controller.getCurrentUser)
+router.get('/auth/profile', auth, controller.getProfile)
+
+// display user information
+router.get('/auth/dashboard', auth, controller.getDashboard)
 
 // display friends information
 router.get('/auth/friends', auth, controller.getFriends)
