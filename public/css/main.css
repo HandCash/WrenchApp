@@ -497,3 +497,7 @@ a.button {
   text-decoration: none;
   color: initial;
 }
+
+indigoBg{
+  background-color: #35469C !important;
+}
