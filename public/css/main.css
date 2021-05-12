@@ -473,7 +473,7 @@ a  {
 input[type=text] {
   width: 100%;
   box-sizing: border-box;
-  background-color: #ebebeb;
+  color: whitesmoke;
   color: rgb(34, 34, 34);
 }
 
@@ -498,6 +498,7 @@ a.button {
   color: initial;
 }
 
-indigoBg{
+.indigoBg{
+  color: whitesmoke;
   background-color: #35469C !important;
 }
