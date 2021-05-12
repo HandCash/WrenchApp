@@ -23,7 +23,8 @@ block content
                     br
                     input(type='text', placeholder='note', name='note')
                     p
-                    a.button.feature(type="submit") Simple Transaction
+                    button.feature
+                        a(type="submit") Simple Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
             p
             hr
@@ -35,7 +36,8 @@ block content
                     br
                     input(type='text', placeholder='note', name='note')
                     p
-                    a.button.feature(type="submit") MultiParty Transaction
+                    button.feature
+                        a(type="submit") MultiParty Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
 
             p
@@ -43,7 +45,8 @@ block content
             form(action='/auth/test-data', method='post')
                 input(type='text', placeholder='text', name='text')
                 p
-                a.button.feature(type="submit") Attachment Transaction 
+                button.feature
+                    a(type="submit") Attachment Transaction 
             a.button(href="https://docs.handcash.dev/examples/") 🔗     
             p
             hr
@@ -51,7 +54,8 @@ block content
                 form(action='/auth/encrypt', method='post')
                     input(type='text', placeholder='text', name='encryptText')
                     p
-                    a.button.feature(type="submit") Encrypted Data
+                    button.feature
+                        a(type="submit") Encrypted Data
             a.button(href="https://docs.handcash.dev/examples/") 🔗     
 
             p
@@ -61,6 +65,7 @@ block content
                 form#get-tx-form(method="get", action='/auth/get-transaction')
                     input(type='text', placeholder='txid', name='txid')
                     p
-                    a.button.feature(type="submit") View Transaction
+                    button.feature
+                        a(type="submit") View Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
             
