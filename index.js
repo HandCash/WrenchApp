@@ -49,5 +49,6 @@ app.use(express.json());
 app.use("/", featuresRoutes);
 app.use("/", loginRoutes);
 
-
-app.listen(80);
+const port = process.env.PORT || 3000;
+const server = await http.createServer(app).listen(port);
+server.timeout = 300000;
