@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --ignore 'data/*' index.js",
-    "start-server": "node index.js"
+    "start-server": "nodemon --ignore 'data/*' index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
