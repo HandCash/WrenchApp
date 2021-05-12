@@ -13,7 +13,7 @@ const expressSession = require('express-session')({
   resave: false,
   saveUninitialized: false
 });
-const rootDir = require('./util/path')
+const rootDir = require('./util/path');
 
 (async () => {
   app.use(passport.initialize());
@@ -53,4 +53,4 @@ const rootDir = require('./util/path')
   const port = process.env.PORT || 3000;
   const server = await http.createServer(app).listen(port);
   server.timeout = 300000;
-});
+})();
