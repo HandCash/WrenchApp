@@ -6,13 +6,11 @@ block styles
 block content
         main
             hr       
-            button.feature
-                a(href="/") Login Page
-            a.button(href="https://docs.handcash.dev/examples/") 🔗   
+            a.button.feature(href="/") Login Page
+            a.button(href="https://docs.handcash.dev/examples/#authentication") 🔗   
             br
             hr
-            button.feature
-                a(href="/auth/profile") View Profile
+            a.button.feature(href="/auth/profile") View Profile
             a.button(href="https://docs.handcash.dev/examples/") 🔗     
 
             p
@@ -25,8 +23,7 @@ block content
                     br
                     input(type='text', placeholder='note', name='note')
                     p
-                    button.feature
-                        a(type="submit") Simple Transaction
+                    a.button.feature(type="submit") Simple Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
             p
             hr
@@ -38,8 +35,7 @@ block content
                     br
                     input(type='text', placeholder='note', name='note')
                     p
-                    button.feature
-                        a(type="submit") MultiParty Transaction
+                    a.button.feature(type="submit") MultiParty Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
 
             p
@@ -47,8 +43,7 @@ block content
             form(action='/auth/test-data', method='post')
                 input(type='text', placeholder='text', name='text')
                 p
-                button.feature
-                    a(type="submit") Attachment Transaction 
+                a.button.feature(type="submit") Attachment Transaction 
             a.button(href="https://docs.handcash.dev/examples/") 🔗     
             p
             hr
@@ -56,8 +51,7 @@ block content
                 form(action='/auth/encrypt', method='post')
                     input(type='text', placeholder='text', name='encryptText')
                     p
-                    button.feature
-                        a(type="submit") Encrypted Data
+                    a.button.feature(type="submit") Encrypted Data
             a.button(href="https://docs.handcash.dev/examples/") 🔗     
 
             p
@@ -67,7 +61,6 @@ block content
                 form#get-tx-form(method="get", action='/auth/get-transaction')
                     input(type='text', placeholder='txid', name='txid')
                     p
-                    button.feature
-                        a(type="submit") View Transaction
+                    a.button.feature(type="submit") View Transaction
                 a.button(href="https://docs.handcash.dev/examples/") 🔗     
             
