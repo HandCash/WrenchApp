@@ -15,40 +15,42 @@ const expressSession = require('express-session')({
 });
 const rootDir = require('./util/path')
 
-app.use(passport.initialize());
-app.use(passport.session());
+(async () => {
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-app.use(cors())
+  app.use(cors())
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(rootDir, 'public')))
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.static(path.join(rootDir, 'public')))
 
-app.set('view engine', 'pug')
-app.set('views', 'views')
+  app.set('view engine', 'pug')
+  app.set('views', 'views')
 
-app.use(bodyParser.json());
-app.use(expressSession);
+  app.use(bodyParser.json());
+  app.use(expressSession);
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-})
+  app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      next();
+  })
 
- 
-//connect to mongodb
-mongoose
-  .connect(process.env.database, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch(err => console.error("Could not connect to MongoDB..."));
+  
+  //connect to mongodb
+  mongoose
+    .connect(process.env.database, { useNewUrlParser: true })
+    .then(() => console.log("Connected to MongoDB..."))
+    .catch(err => console.error("Could not connect to MongoDB..."));
 
 
-app.use(express.json());
-//use users route for api/users
-app.use("/", featuresRoutes);
-app.use("/", loginRoutes);
+  app.use(express.json());
+  //use users route for api/users
+  app.use("/", featuresRoutes);
+  app.use("/", loginRoutes);
 
-const port = process.env.PORT || 3000;
-const server = await http.createServer(app).listen(port);
-server.timeout = 300000;
+  const port = process.env.PORT || 3000;
+  const server = await http.createServer(app).listen(port);
+  server.timeout = 300000;
+});
