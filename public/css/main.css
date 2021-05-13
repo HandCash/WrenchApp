@@ -466,9 +466,6 @@ button {
   width: 100%; /* Green */
 }
 
-a  {
-  color: white !important;
-}
 
 input[type=text] {
   width: 100%;
@@ -501,4 +498,5 @@ a.button {
 .indigoBg{
   color: whitesmoke;
   background-color: #35469C !important;
+  border-color: #35469C !important;
 }
