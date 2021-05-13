@@ -458,20 +458,6 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  width: 20%
-}
-
-.feature {
-  background-color: #38CB7C !important;
-  width: 100%; /* Green */
-}
-
-
-input[type=text] {
-  width: 100%;
-  box-sizing: border-box;
-  color: whitesmoke;
-  color: rgb(34, 34, 34);
 }
 
 hr {
@@ -486,17 +472,16 @@ main {
   max-width: 600px;
 }
 
-a.button {
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-
-  text-decoration: none;
-  color: initial;
-}
-
 .indigoBg{
   color: whitesmoke;
   background-color: #35469C !important;
   border-color: #35469C !important;
+}
+
+button > a {
+  color: whitesmoke !important;
+}
+
+a {
+  text-decoration: none !important;
 }

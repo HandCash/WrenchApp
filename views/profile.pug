@@ -5,11 +5,10 @@ block styles
 
 block content
     main.centered
-        .card.mb-3.center.center-card.selector.noshadow(style='max-width: 750px;')
-            .row.no-gutters
+        .card.mb-8.center.center-card.selector.noshadow(style='max-width: 750px;')
                 .col-md-4
                     img.card-img(src=(publicProfile.avatarUrl!=null?publicProfile.avatarUrl:'https://res.cloudinary.com/hn8pdtayf/image/upload/v1574424259/yujsq64bxfbrbobexivo.jpg'), alt="profile picture")
-                .col-md-8
+                .col-md-14
                     .card-body
                         h5.card-title $#{publicProfile.handle}
                         ul.list-unstyled.mt-3.mb-4
@@ -25,7 +24,8 @@ block content
                         ul.list-unstyled.mt-3.mb-4
                             li #{permissions}
                         br
-                        button
+                        button.btn.btn-primary
                             a(href="/auth/friends") Friends
-        button
+        br
+        button.btn.btn-primary
             a(href="/auth/dashboard") Back to dashboard
