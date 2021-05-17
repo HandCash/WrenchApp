@@ -1,0 +1,14 @@
+extends ./layouts/main-layout.pug
+
+block styles
+    link(rel='stylesheet', href='../public/css/bootstrap.profile.design.css')
+
+block content
+    main.centered
+        .card.mb-8.center.center-card.selector.noshadow(style='max-width: 750px;')
+                .col-md-14
+                    .card-body
+                        #{err}
+        br
+        button.btn.btn-primary
+            a(href="/auth/dashboard") Back to dashboard
