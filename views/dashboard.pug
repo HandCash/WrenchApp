@@ -2,73 +2,76 @@ extends ./layouts/main-layout.pug
 
 block styles
     link(rel='stylesheet', href='../public/css/bootstrap.profile.design.css')
-
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css')
+    link(rel='stylesheet', href='/vendors/formvalidation/dist/css/formValidation.min.css')
 block content
-        main
-            hr       
-            a.indigoBg.btn.btn-primary(href="/") Login Page
-            a.button(href="https://docs.handcash.dev/examples/#authentication")    🔗  
-            br
-            hr
-            a.indigoBg.btn.btn-primary(href="/auth/profile") View Profile
-            a.button(href="https://docs.handcash.dev/examples/#profile")    🔗    
-            hr
-            .search-container
-                form(action='/auth/test-send', method='post')
-                    h3 Simple Transaction
-                    .form-group
-                        input.form-control(type='text', placeholder='handle', name='handle')
-                    .form-group
-                        input.form-control(type='text', placeholder="amount (in Đuros)", name='amount')
-                    .form-group
-                        input.form-control(type='text', placeholder='note', name='note')
-                    p
-                    button.btn.btn-primary
-                        a(type="submit") Submit
-                a.button(href="https://docs.handcash.dev/examples/#payment")    🔗     
-            p
-            hr
-            .search-container
-                form(action='/auth/test-multi-send', method='post')
-                    h3 Multiparty Transaction
-                    .form-group
-                        input.form-control(type='text', placeholder='handles (comma separated)', name='handles')
-                    .form-group
-                        input.form-control(type='text', placeholder="amount to each (in Đuros)", name='amount')
-                    .form-group
-                        input.form-control(type='text', placeholder='note', name='note')
-                    p
-                    button.btn.btn-primary
-                        a(type="submit") Submit
-                a.button(href="https://docs.handcash.dev/examples/#multipayment")    🔗     
-            p
-            hr
-            form(action='/auth/test-data', method='post')
-                h3 Attachment Transaction
+    main
+        hr       
+        a.indigoBg.btn.btn-primary(href="/") Login Page
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#authentication")    🔗  
+        br
+        hr
+        a.indigoBg.btn.btn-primary(href="/auth/profile") View Profile
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#profile")    🔗    
+        hr
+        .search-container
+            form#sendForm(action='/auth/test-send', method='post')
+                h3 Simple Transaction
                 .form-group
-                    input.form-control(type='text', placeholder='text', name='text')
+                    input.form-control(type='text', placeholder="handle", name='handle', required)
+                .form-group
+                    input.form-control(type='number', min="1", placeholder="amount (in Đuros)", name='amount', required)
+                .form-group
+                    input.form-control(type='text', placeholder='note', name='note', required)
                 p
                 button.btn.btn-primary
                     a(type="submit") Submit
-            a.button(href="https://docs.handcash.dev/examples/#data")    🔗      
-            p
-            hr
-            form(action='/auth/encrypt', method='post')
-                h3 Encrypt Data
+            a.button(title="code snippet" href="https://docs.handcash.dev/examples/#payment")    🔗     
+        p
+        hr
+        .search-container
+            form(action='/auth/test-multi-send', method='post')
+                h3 Multiparty Transaction
                 .form-group
-                    input.form-control(type='text', placeholder='text', name='encryptText')
+                    input.form-control(type='text', placeholder='handles (comma separated)', name='handles', required)
+                .form-group
+                    input.form-control(type='number', min="1", placeholder="amount to each (in Đuros)", name='amount', required)
+                .form-group
+                    input.form-control(type='text', placeholder='note', name='note', required)
                 p
                 button.btn.btn-primary
                     a(type="submit") Submit
-            a.button(href="https://docs.handcash.dev/examples/#encrypt")    🔗       
-            hr
-            .search-container
-                form(method="get", action='/auth/get-transaction')
-                    h3 Fetch Transaction
-                    .form-group
-                        input.form-control(type='text', placeholder='txid', name='txid')
-                    p
-                    button.btn.btn-primary
-                        a(type="submit") Submit
-                a.button(href="https://docs.handcash.dev/examples/#fetchtx")    🔗       
-            
+            a.button(title="code snippet" href="https://docs.handcash.dev/examples/#multipayment")    🔗     
+        p
+        hr
+        form(action='/auth/test-data', method='post')
+            h3 Attachment Transaction
+            .form-group
+                input.form-control(type='text', placeholder='text', name='text', required)
+            p
+            button.btn.btn-primary
+                a(type="submit") Submit
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#data")    🔗      
+        p
+        hr
+        form(action='/auth/encrypt', method='post')
+            h3 Encrypt Data
+            .form-group
+                input.form-control(type='text', placeholder='text', name='encryptText', required)
+            p
+            button.btn.btn-primary
+                a(type="submit") Submit
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#encrypt")    🔗       
+        hr
+        .search-container
+            form(method="get", action='/auth/get-transaction')
+                h3 Fetch Transaction
+                .form-group
+                    input.form-control(type='text', placeholder='txid', name='txid', required)
+                p
+                button.btn.btn-primary
+                    a(type="submit") Submit
+            a.button(title="code snippet" href="https://docs.handcash.dev/examples/#fetchtx")    🔗       
+
+
