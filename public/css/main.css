@@ -485,3 +485,7 @@ button > a {
 a {
   text-decoration: none !important;
 }
+
+button {
+  -webkit-appearance: none !important;
+}
