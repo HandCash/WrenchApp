@@ -7,7 +7,7 @@ const handCashConnect = new HandCashConnect(process.env.appId);
 module.exports.getLoginLink = async (req, res, next) => {
 
   // fetch authentication url using the SDK
-  const redirectUrl = await handCashConnect.getRedirectionUrl();
+  const redirectUrl = await handCashConnect.getRedirectionUrl({state: "xyz"});
   
   // return page with a login button
   res.render('index', {
@@ -77,6 +77,7 @@ module.exports.getDashboard = async (req, res) => {
   const spendableBalance = await account.wallet.getSpendableBalance()
   const permissions = await account.profile.getPermissions()
   // print it out
+  console.log(publicProfile)
 
   // display public profile
   res.render('dashboard', {
@@ -94,7 +95,8 @@ module.exports.getFriends = async (req, res) => {
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
-  const friends = await account.profile.getFriends()
+  //const friends = await account.profile.getFriends()
+  const friends = await account.profile.getPublicProfilesByHandle(['crypto', 'eyeone'])
 
   // print it out
   console.log(friends)

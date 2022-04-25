@@ -24,7 +24,7 @@ block content
                 .form-group
                     input.form-control(type='text', placeholder="handle", name='handle', required)
                 .form-group
-                    input.form-control(type='number', min="1", placeholder="amount (in Đuros)", name='amount', required)
+                    input.form-control(type='number', min="1", placeholder="amount (in $USD))", name='amount', required)
                 .form-group
                     input.form-control(type='text', pattern=".{1,25}",  oninvalid="setCustomValidity('Please set a note 1-25 characters in length')", placeholder='note (25 chars max)', name='note', required)
                 p
@@ -39,7 +39,7 @@ block content
                 .form-group
                     input.form-control(type='text', placeholder='handles (comma separated)', name='handles', required)
                 .form-group
-                    input.form-control(type='number', min="1", placeholder="amount to each (in Đuros)", name='amount', required)
+                    input.form-control(type='number', min="1", placeholder="amount to each (in $USD)", name='amount', required)
                 .form-group
                     input.form-control(type='text', pattern=".{1,25}",  oninvalid="setCustomValidity('Please set a note 1-25 characters in length')", placeholder='note (25 chars max)' name='note', required)
                 p

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+#connectButton{
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+	font-family: 'Poppins', sans-serif;
+	box-shadow: 0px 1px 3px hsla(0, 0%, 0%, .15);
+	background-image: linear-gradient(#36ca7c, #129880);
+	border-radius: 8px;
+	display:inline-block;
+	text-align: center;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:16px;
+	font-weight:500;
+	padding:16px 24px;
+	text-decoration:none;
+	transition: 0.3s;
+	width: 100%;
+	max-width: 320px;
+	vertical-align: middle;
+	letter-spacing: 0.5px;
+}
+
+#connectButton:before {
+	background: url(https://docs.handcash.dev/assets/pewbutton.png) no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    color: #fff;
+    height: 20px;
+    margin-right: 12px;
+    margin-bottom: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 75px;
+}
+
+#connectButton:hover {
+	background-image: linear-gradient(#3ad884, #16ad92);
+	top:1px;
+	box-shadow: 0px 3px 6px hsla(0, 0%, 0%, .15);
+}
+
+#connectButton:active {
+	background-image: linear-gradient(#40f193, #16c0a1);
+	position:relative;
+	top:1px;
+	box-shadow: 0px 0px 0px hsla(0, 0%, 0%, .15);
+}

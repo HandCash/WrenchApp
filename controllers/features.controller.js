@@ -38,7 +38,7 @@ module.exports.sendTransaction = async (req, res, next) => {
   const handle = parseHandle(req.body.handle)
   const amount = parseInt(req.body.amount)
   const note = req.body.note
-  const currencyCode = 'DUR'
+  const currencyCode = 'USD'
 
   // construct the payment
   const paymentParameters = {
@@ -72,7 +72,7 @@ module.exports.sendMultisendTransaction = async (req, res, next) => {
   const handles = parseHandleArray(req.body.handles)
   const amount = parseInt(req.body.amount)
   const note = req.body.note
-  const currencyCode = 'DUR'
+  const currencyCode = 'USD'
 
   const payments = handles.map(handle => {return {
     destination: handle,
@@ -103,7 +103,7 @@ module.exports.sendDataTransaction = async (req, res, next) => {
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
   const { publicProfile } = await account.profile.getCurrentProfile()
-
+  
   // define parameters 
   const handle = publicProfile.handle
   const amount = 500
