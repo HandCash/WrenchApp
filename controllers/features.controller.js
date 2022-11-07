@@ -62,6 +62,40 @@ module.exports.sendTransaction = async (req, res, next) => {
 }
 
 // sends a transaction on behalf of the user
+module.exports.sendTip = async (req, res, next) => {
+
+  // fetch the authenticated user and their profile
+  const user = await User.findById(req.user._id);
+  const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
+
+  // define parameters 
+  const handle = parseHandle(req.body.handle)
+  const amount = 0.01
+  const note = "In-app Tip"
+  const currencyCode = 'USD'
+
+  // construct the payment
+  const paymentParameters = {
+    description: note,
+    payments:
+      [
+        {
+          destination: handle,
+          currencyCode: currencyCode,
+          sendAmount: amount,
+        },
+      ],
+  };
+
+  // make the payment
+  const payment = await account.wallet.pay(paymentParameters).catch(err => {console.log(err)})
+  console.log(payment)
+
+  // display public profile with the recent transaction
+  res.redirect("/auth/get-transaction?txid=" + payment.transactionId)
+}
+
+// sends a transaction on behalf of the user
 module.exports.sendMultisendTransaction = async (req, res, next) => {
   console.log("here")
   // fetch the authenticated user and their profile

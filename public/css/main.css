@@ -426,8 +426,8 @@ form {
 	letter-spacing: 0.5px;
 }
 #connectButton:before {
-	background: url(https://handcash.io/resources/handcash_white_icon.svg) no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
-    content: "";
+  background: url("https://handcash.io/assets/ic_stat_handcash_notification.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+  content: "";
     display: inline-block;
     color: #fff;
     height: 20px;

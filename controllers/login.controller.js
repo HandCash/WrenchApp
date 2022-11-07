@@ -7,7 +7,7 @@ const handCashConnect = new HandCashConnect(process.env.appId);
 module.exports.getLoginLink = async (req, res, next) => {
 
   // fetch authentication url using the SDK
-  const redirectUrl = await handCashConnect.getRedirectionUrl({state: "xyz"});
+  const redirectUrl = await handCashConnect.getRedirectionUrl({'referrerHandle': 'mijem'});
   
   // return page with a login button
   res.render('index', {
@@ -37,6 +37,35 @@ module.exports.getAuthenticate = async (req, res, next) => {
 
   // update authToken
   user.connectAuthToken = authToken
+
+  // save user
+  await user.save();
+
+  // generating a jwt
+  req.session.accessToken = user.generateAuthToken();
+  res.redirect('/auth/dashboard'); 
+};
+
+// authenticate
+module.exports.getAuthNFTYJigs = async (req, res, next) => {
+
+  // create a user upon a new login
+  const auth = req.query.auth;
+
+  // get user profile, and save alias to the user 
+  const account = await handCashConnect.getAccountFromAuthToken(authToken);
+  const { publicProfile } = await account.profile.getCurrentProfile()
+  const handcashId = publicProfile.id
+
+  // check if the user exists, if not create a new one
+  let user = await User.findOne({nftyToken: nftyToken})
+  if(!user){
+    user = new User();
+    user.nftyToken = nftyToken
+  }
+
+  // update authToken
+  user.nftyToken = nftyToken
   
   // save user
   await user.save();
@@ -95,8 +124,7 @@ module.exports.getFriends = async (req, res) => {
   // fetch the authenticated user and their profile
   const user = await User.findById(req.user._id);
   const account = await handCashConnect.getAccountFromAuthToken(user.connectAuthToken);
-  //const friends = await account.profile.getFriends()
-  const friends = await account.profile.getPublicProfilesByHandle(['crypto', 'eyeone'])
+  const friends = await account.profile.getFriends()
 
   // print it out
   console.log(friends)

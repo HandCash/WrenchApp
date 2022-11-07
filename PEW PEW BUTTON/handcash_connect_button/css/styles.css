@@ -27,7 +27,7 @@
 }
 
 #connectButton:before {
-	background: url(https://docs.handcash.dev/assets/pewbutton.png) no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+    background: url("https://handcash.io/assets/ic_stat_handcash_notification.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
     content: "";
     display: inline-block;
     color: #fff;
@@ -36,7 +36,7 @@
     margin-bottom: 1px;
     position: relative;
     vertical-align: middle;
-    width: 75px;
+    width: 20px;
 }
 
 #connectButton:hover {

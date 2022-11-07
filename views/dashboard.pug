@@ -9,14 +9,14 @@ block content
     main
         hr       
         a.indigoBg.btn.btn-primary(href="/") Login Page
-        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#authentication")    🔗  
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#authentication")    
         br
         hr
         a.indigoBg.btn.btn-primary(href="/auth/profile") View Profile
-        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#profile")    🔗    
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#profile")       
         hr
         a.indigoBg.btn.btn-primary(href="/auth/friends") Friends List
-        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#friends")    🔗    
+        a.button(title="code snippet" href="https://docs.handcash.dev/examples/#friends")       
         hr
         .search-container
             form#sendForm(action='/auth/test-send', method='post')
@@ -24,13 +24,13 @@ block content
                 .form-group
                     input.form-control(type='text', placeholder="handle", name='handle', required)
                 .form-group
-                    input.form-control(type='number', min="1", placeholder="amount (in $USD))", name='amount', required)
+                    input.form-control(type='number', min="0.01", placeholder="amount (in $USD))", name='amount', required)
                 .form-group
                     input.form-control(type='text', pattern=".{1,25}",  oninvalid="setCustomValidity('Please set a note 1-25 characters in length')", placeholder='note (25 chars max)', name='note', required)
                 p
                 button.btn.btn-primary
                     a(type="submit") Submit
-            a.button(title="code snippet" href="https://docs.handcash.dev/examples/#payment")    🔗     
+            a.button(title="code snippet" href="https://docs.handcash.dev/examples/#payment")        
         p
         hr
         .search-container

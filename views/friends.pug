@@ -19,5 +19,11 @@ block content
                                 li Display Name: #{friend.displayName}
                                 li Local Curreny Code: #{friend.localCurrencyCode}
                                 li Handle: #{friend.handle}
+                                li 
+                                    form#sendForm(action='/auth/tip/', method='post')
+                                        p
+                                        input(type='hidden', placeholder="handle", name='handle', value=friend.handle)
+                                        button.btn.btn-primary
+                                            a(type="submit") Tip 1¢  
         button
             a(href="/auth/dashboard") Back to dashboard

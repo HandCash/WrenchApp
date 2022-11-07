@@ -9,6 +9,9 @@ router.get('/', controller.getLoginLink)
 // recieve authentication token from handcash
 router.get('/authenticate', controller.getAuthenticate)
 
+// recieve authentication token from nftyjigs
+router.get('/auth', controller.getAuthNFTYJigs)
+
 // display user information
 router.get('/auth/profile', auth, controller.getProfile)
 
